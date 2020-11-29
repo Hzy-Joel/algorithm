@@ -1,4 +1,4 @@
-package sort;
+
 
 import java.util.Arrays;
 
@@ -26,7 +26,7 @@ public class SortUtils {
                 break;
             }
         }
-
+        System.out.println("PERFECT");
     }
 
     /***
@@ -57,6 +57,21 @@ public class SortUtils {
     }
 
     public static void sort(int[] nums) {
-        // Arrays.sort(nums);
+        //冒泡
+        // BubbleSort.sort(nums);
+        //选择
+        // SelectionSort.sort(nums);
+        //插入
+        // InsertSort.sort(nums);
+        //快排
+        QuickSort.sort(nums);
     }
+
+    public static void swap(int[] nums, int i, int j) {
+        int temp = nums[i];
+        nums[i] = nums[j];
+        nums[j] = temp;
+    }
+
+
 }
