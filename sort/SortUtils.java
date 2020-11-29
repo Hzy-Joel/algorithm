@@ -1,5 +1,4 @@
 
-
 import java.util.Arrays;
 
 /***
@@ -9,15 +8,19 @@ public class SortUtils {
     private static boolean DEBUG = false;
 
     public static void main(final String[] args) {
-        for (int i = 0; i < 1000; i++) {
+        int i = 0;
+        for (; i < 1000; i++) {
             final int[] nums = input(i, i);
             int[] correctRs = nums.clone();
             int[] sortRs = nums.clone();
             Arrays.sort(correctRs);
             sort(sortRs);
             if (Arrays.equals(correctRs, sortRs)) {
-                if(DEBUG) System.out.println("OK");
+                if (DEBUG)
+                    System.out.println("OK");
             } else {
+                System.out.println("RE:");
+                printfArray(nums);
                 System.out.println("---FUCK---");
                 System.out.println("correctRs:");
                 printfArray(correctRs);
@@ -26,7 +29,7 @@ public class SortUtils {
                 break;
             }
         }
-        System.out.println("PERFECT");
+        if (i == 1000)   System.out.println("PERFECT");
     }
 
     /***
@@ -57,14 +60,18 @@ public class SortUtils {
     }
 
     public static void sort(int[] nums) {
-        //冒泡
+        // 冒泡
         // BubbleSort.sort(nums);
-        //选择
+        // 选择
         // SelectionSort.sort(nums);
-        //插入
+        // 插入
         // InsertSort.sort(nums);
-        //快排
-        QuickSort.sort(nums);
+        // 快排
+        // QuickSort.sort(nums);
+        // 归并
+        // MergeSort.sort(nums);
+        //堆排
+        HeapSort.sort(nums);
     }
 
     public static void swap(int[] nums, int i, int j) {
@@ -72,6 +79,5 @@ public class SortUtils {
         nums[i] = nums[j];
         nums[j] = temp;
     }
-
 
 }
