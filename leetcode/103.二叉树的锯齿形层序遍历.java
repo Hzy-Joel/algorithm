@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Queue;
 
 import javax.swing.text.AbstractDocument.LeafElement;
@@ -19,23 +20,28 @@ import leetcode.tree.TreeNode;
  */
 class Solution {
     public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
-        Queue<TreeNode> queue =new LinkedList<>();
         List<List<Integer>> ans = new ArrayList<>();
-        if(root == null) return ans;
-        queue.add(root);
+        if (root == null)
+            return ans;
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.offer(root);
         boolean flag = true;
-        while(!queue.isEmpty()){
+        while (!queue.isEmpty()) {
             int size = queue.size();
-            ArrayList<Integer> flow = new ArrayList<>();
+            List<Integer> level = new ArrayList<>();
             for (int i = 0; i < size; i++) {
-                TreeNode temp = queue.poll();
-                if(temp.left != null) queue.add(temp.left);
-                if(temp.right != null) queue.add(temp.right);
-                if(flag) flow.add(temp.val);
-                else flow.add(0,temp.val);
+                TreeNode node = queue.poll();
+                if (node.left != null)
+                    queue.offer(node.left);
+                if (node.right != null)
+                    queue.offer(node.right);
+                if (!flag)
+                    level.add(0, node.val);
+                else
+                    level.add(node.val);
             }
-            ans.add(flow);
             flag = !flag;
+            ans.add(level);
         }
         return ans;
     }

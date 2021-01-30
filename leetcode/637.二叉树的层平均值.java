@@ -6,9 +6,9 @@ import java.util.Queue;
 import leetcode.tree.TreeNode;
 
 /*
- * @lc app=leetcode.cn id=199 lang=java
+ * @lc app=leetcode.cn id=637 lang=java
  *
- * [199] 二叉树的右视图
+ * [637] 二叉树的层平均值
  */
 
 // @lc code=start
@@ -17,20 +17,24 @@ import leetcode.tree.TreeNode;
  * left; TreeNode right; TreeNode(int x) { val = x; } }
  */
 class Solution {
-    public List<Integer> rightSideView(TreeNode root) {
-        List<Integer> ans = new ArrayList<>();
-        if (root == null) return ans;
+    public List<Double> averageOfLevels(TreeNode root) {
+        List<Double> ans = new ArrayList<>();
+        if (root == null)
+            return ans;
         Queue<TreeNode> queue = new LinkedList<>();
-        queue.add(root);
-        while(!queue.isEmpty()){
+        queue.offer(root);
+        while (!queue.isEmpty()) {
             int size = queue.size();
+            Double sum = 0d;
             for (int i = 0; i < size; i++) {
                 TreeNode node = queue.poll();
-                if(i == 0) ans.add(node.val);
-                if(node.right!=null) queue.offer(node.right);
-                if(node.left!=null) queue.offer(node.left);
+                if (node.left != null)
+                    queue.offer(node.left);
+                if (node.right != null)
+                    queue.offer(node.right);
+                sum += node.val;
             }
-            
+            ans.add(sum/size);
         }
         return ans;
     }

@@ -1,3 +1,7 @@
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Stack;
+
 import leetcode.tree.TreeNode;
 
 /*
@@ -8,42 +12,29 @@ import leetcode.tree.TreeNode;
 
 // @lc code=start
 /**
- * Definition for a binary tree node.
- * public class TreeNode {
- *     int val;
- *     TreeNode left;
- *     TreeNode right;
- *     TreeNode() {}
- *     TreeNode(int val) { this.val = val; }
- *     TreeNode(int val, TreeNode left, TreeNode right) {
- *         this.val = val;
- *         this.left = left;
- *         this.right = right;
- *     }
- * }
+ * Definition for a binary tree node. public class TreeNode { int val; TreeNode
+ * left; TreeNode right; TreeNode() {} TreeNode(int val) { this.val = val; }
+ * TreeNode(int val, TreeNode left, TreeNode right) { this.val = val; this.left
+ * = left; this.right = right; } }
  */
 class Solution {
     int res = 0;
+
     public int kthSmallest(TreeNode root, int k) {
-        recur(root,k);
-        return res;
-    }
-    
-    public void recur(TreeNode node,int count) {
-        if(node == null || count < 0) return;
-        
-        recur(node.left,count); 
-
-        //操作
-        --count;
-        
-        if(count == 0) {
-            res = node.val;
-            return;
+        Stack<TreeNode> stack = new Stack<>();
+        if (root == null) return -1;
+        TreeNode pre = root;
+        while (pre != null || !stack.isEmpty()) {
+            while (pre != null) {
+                stack.push(pre);
+                pre = pre.left;
+            }
+            pre = stack.pop();
+            if(--k == 0) return pre.val;
+            pre = pre.right;
         }
-
-        recur(node.right,count);
+        return -1;
     }
+
 }
 // @lc code=end
-
