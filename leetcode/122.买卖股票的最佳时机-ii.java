@@ -9,14 +9,26 @@
 
 // @lc code=start
 class Solution {
+    // public int maxProfit(int[] prices) {
+    //     int dp_0 = 0, dp_1 = Integer.MIN_VALUE;
+    //     for (int i = 0; i < prices.length; i++) {
+    //         int temp = dp_0;
+    //         dp_0 = Math.max(dp_0, dp_1 + prices[i]);
+    //         dp_1 = Math.max(dp_1, temp - prices[i]);
+    //     }
+    //     return dp_0;
+    // }
+
+
     public int maxProfit(int[] prices) {
-        int dp_0 = 0, dp_1 = Integer.MIN_VALUE;
+        int dp_0_0 = 0;
+        int dp_0_1 = Integer.MIN_VALUE;
         for (int i = 0; i < prices.length; i++) {
-            int temp = dp_0;
-            dp_0 = Math.max(dp_0, dp_1 + prices[i]);
-            dp_1 = Math.max(dp_1, temp - prices[i]);
+            int temp = dp_0_0;
+            dp_0_0 = Math.max(dp_0_0, dp_0_1 + prices[i]);
+            dp_0_1 = Math.max(te mp - prices[i], dp_0_1);
         }
-        return dp_0;
+        return dp_0_0;
     }
 }
 // @lc code=end

@@ -31,7 +31,7 @@ public class HeapSort {
     public static void headfiy(int[] nums, int len, int index) {
         if (index < 0)
             return;
-        while (index <= len) {
+        while (index <= len) { 
             int big = index;
             big = 2 * index + 1 <= len && nums[2 * index + 1] > nums[big] ? 2 * index + 1 : big;
             big = 2 * index + 2 <= len && nums[2 * index + 2] > nums[big] ? 2 * index + 2 : big;

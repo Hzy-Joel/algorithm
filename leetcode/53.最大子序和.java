@@ -7,12 +7,11 @@
 // @lc code=start
 class Solution {
     public int maxSubArray(int[] nums) {
-        int ans = 0;
-        int cur = 0;
+        int max = 0;
+        int ans = Integer.MIN_VALUE;
         for (int i = 0; i < nums.length; i++) {
-            cur = Math.max(nums[i], cur + nums[i]);
-            if (i == 0) ans = cur;
-            else ans = Math.max(ans, cur);
+            max = Math.max(nums[i], max + nums[i]);
+            ans = Math.max(max, ans);
         }
         return ans;
     }

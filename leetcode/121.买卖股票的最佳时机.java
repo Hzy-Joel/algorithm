@@ -18,13 +18,13 @@
 // @lc code=start
 class Solution {
     public int maxProfit(int[] prices) {
-        int dp_0 = 0;
-        int dp_1 = Integer.MIN_VALUE;
-        for (int i = 1; i < prices.length + 1; i++) {
-            dp_0 = Math.max(dp_0, dp_1 + prices[i - 1]);
-            dp_1 = Math.max(dp_1, -prices[i - 1]);
+        int dp_i_0 = 0;
+        int dp_i_1 = Integer.MIN_VALUE;
+        for (int i = 0; i < prices.length; i++) {
+            dp_i_0 = Math.max(dp_i_0, dp_i_1 + prices[i]);
+            dp_i_1 = Math.max(dp_i_1, -prices[i]);
         }
-        return dp_0;
+        return dp_i_0;
     }
 }
 // @lc code=end

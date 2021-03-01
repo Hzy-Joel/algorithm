@@ -13,23 +13,24 @@ import sun.java2d.pipe.ValidatePipe;
  * ListNode next) { this.val = val; this.next = next; } }
  */
 class Solution {
+    // public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
+    // if (l1 == null) return l2;
+    // if (l2 == null) return l1;
+    // ListNode ans = l1.val < l2.val ? l1 : l2;
+    // if (ans == l1) l1 = l1.next;
+    // if (ans == l2) l2 = l2.next;
+    // ans.next = mergeTwoLists(l1, l2);
+    // return ans;
+    // }
+
     public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
-        ListNode ans = new ListNode(-1);
-        ListNode cur = ans;
-        while (l1 != null && l2 != null) {
-            ListNode node;
-            if (l1.val < l2.val) {
-                node = l1;
-                l1 = l1.next;
-            } else {
-                node = l2;
-                l2 = l2.next;
-            }
-            cur.next = node;
-            cur = cur.next;
-        }
-        cur.next = l1 == null ? l2 : l1;
-        return ans.next;
+        if(l1 == null) return l2;
+        if(l2 == null) return l1;
+        ListNode ans = l1.val < l2.val ? l1 : l2;
+        if(ans == l1) l1 = l1.next;
+        if(ans == l2) l2 = l2.next;
+        ans.next = mergeTwoLists(l1, l2);
+        return ans;
     }
 }
 // @lc code=end

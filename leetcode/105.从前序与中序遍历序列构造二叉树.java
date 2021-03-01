@@ -18,7 +18,7 @@ import leetcode.tree.TreeNode;
 class Solution {
     private int i = 0;
     public TreeNode buildTree(int[] preorder, int[] inorder) {
-        return buildTree(preorder, inorder, 0, preorder.length - 1);
+        return buildTree(preorder, inorder, 0, inorder.length - 1);
     }
     public TreeNode buildTree(int[] preorder, int[] inorder, int il, int ir) {
         if (il > ir || i >= preorder.length)
@@ -29,10 +29,8 @@ class Solution {
             index++;
         }
         i++;
-        TreeNode left = buildTree(preorder, inorder, il, index - 1);
-        TreeNode right = buildTree(preorder, inorder, index + 1, ir);
-        root.left = left;
-        root.right = right;
+        root.left = buildTree(preorder, inorder, il, index - 1);
+        root.right = buildTree(preorder, inorder, index + 1, ir);
         return root;
     }
 }
